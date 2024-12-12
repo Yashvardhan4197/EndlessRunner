@@ -29,4 +29,12 @@ public class PlayerView : MonoBehaviour
     }
 
     public Rigidbody GetRigidbody()=>rb;
+
+    private void OnTriggerExit(Collider other)
+    {
+        if(other.gameObject.layer==3)
+        {
+            GameService.Instance.GroundService.SpawnGroundObject();
+        }
+    }
 }

@@ -8,11 +8,11 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - GroundSpawner
   - Water
   - UI
-  - 
-  - 
+  - GroundDestroyer
+  - Death
   - 
   - 
   - 
