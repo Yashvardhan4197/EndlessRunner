@@ -41,5 +41,15 @@ public class PlayerController
     {
         rb.velocity += playerDataSO.JumpSpeed * Vector3.up;
     }
+
+    public void OnPlayerDead()
+    {
+        Debug.Log("GameLost");
+    }
+
+    public void SpawnGround()
+    {
+        GameService.Instance.GroundService.SpawnGroundObject();
+    }
 }
 

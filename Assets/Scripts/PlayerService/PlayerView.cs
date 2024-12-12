@@ -11,17 +11,23 @@ public class PlayerView : MonoBehaviour
         playerController?.OnGameStart();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         playerController.Move();
-        if(Input.GetKeyDown(KeyCode.A))
+        
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.A))
         {
             playerController.MoveLane(-1);
-        }else if(Input.GetKeyDown(KeyCode.D))
+        }
+        else if (Input.GetKeyDown(KeyCode.D))
         {
             playerController.MoveLane(+1);
         }
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             playerController.PerformJump();
         }
@@ -38,7 +44,16 @@ public class PlayerView : MonoBehaviour
     {
         if(other.gameObject.layer==3)
         {
-            GameService.Instance.GroundService.SpawnGroundObject();
+            playerController.SpawnGround();
+        }
+        
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == 7)
+        {
+            playerController.OnPlayerDead();
         }
     }
 }

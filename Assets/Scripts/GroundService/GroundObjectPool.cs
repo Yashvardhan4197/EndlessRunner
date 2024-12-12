@@ -38,7 +38,6 @@ public class GroundObjectPool
         PooledItem item=pooledItems.Find(item=>item.groundObjectController==toReturnController);
         if(item!=null)
         {
-            Debug.Log("Wtf");
             item.isUsed = false;
         }
     }
