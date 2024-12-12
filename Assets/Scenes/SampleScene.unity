@@ -467,7 +467,7 @@ MonoBehaviour:
   startPosition: {fileID: 0}
   playerDataSO: {fileID: 11400000, guid: f4cd96a927b43dc4abaa05afd8c21e48, type: 2}
   groundPrefab: {fileID: 7419037379347930110, guid: bb0608d7271a31c4e9a3b4cd1ac4cf04, type: 3}
-  groundOffsetZ: 5
+  groundOffsetZ: 7
   groundOffsetY: -5
 --- !u!4 &1106170233
 Transform:
@@ -625,7 +625,7 @@ Transform:
   m_GameObject: {fileID: 1883811593}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.97, z: 1.02}
+  m_LocalPosition: {x: 0, y: 5.54, z: -2.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
