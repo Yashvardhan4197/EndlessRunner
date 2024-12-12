@@ -1,44 +1,41 @@
-using System;
+﻿using System;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController
 {
-    [SerializeField] Rigidbody rb;
-    [SerializeField] float forwardSpeed;
-    [SerializeField] float horizontalSpeed;
-    [SerializeField] float laneDistance;
+    private PlayerView playerView;
+    private PlayerDataSO playerDataSO;
+    private Rigidbody rb;
     private int currentLane;
     private float targetXPos;
-
-
-    private void Start()
+    public PlayerController(PlayerView playerView,PlayerDataSO playerDataSO)
     {
+        this.playerView = playerView;
+        this.playerDataSO = playerDataSO;
+        playerView.SetController(this);
+        rb=playerView.GetRigidbody();
+    }
+
+    public void OnGameStart()
+    {
+        playerView.gameObject.transform.position = playerDataSO.StartPosition.position;
         currentLane = 0;
-        targetXPos = transform.position.x;
+        targetXPos=playerView.transform.position.x;
     }
-    private void Update()
+    
+    public void Move()
     {
-        Move();
-        if(Input.GetKeyDown(KeyCode.A))
-        {
-            MoveLane(-1);
-        }else if(Input.GetKeyDown(KeyCode.D))
-        {
-            MoveLane(+1);
-        }
+        rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, playerDataSO.ForwardSpeed);
+
+        Vector3 newPos = new Vector3(targetXPos, rb.position.y, rb.position.z);
+        rb.MovePosition(Vector3.Lerp(rb.position, newPos, playerDataSO.HorizontalSpeed * Time.deltaTime));
     }
 
-    private void MoveLane(int lane)
+    public void MoveLane(int lane)
     {
         currentLane = Math.Clamp(currentLane + lane, -1, 1);
-        targetXPos = currentLane * laneDistance;
+        targetXPos = currentLane * playerDataSO.LaneDistance;
     }
 
-    private void Move()
-    {
-        rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, forwardSpeed);
-
-        Vector3 newPos=new Vector3(targetXPos,rb.position.y,rb.position.z);
-        rb.MovePosition(Vector3.Lerp(rb.position, newPos,horizontalSpeed*Time.deltaTime));
-    }
 }
+
