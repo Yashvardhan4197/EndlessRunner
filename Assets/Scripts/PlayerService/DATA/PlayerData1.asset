@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fe649b723544414a915296644ff0b0d, type: 3}
   m_Name: PlayerData1
   m_EditorClassIdentifier: 
-  forwardSpeed: 0
-  horizontalSpeed: 0
-  laneDistance: 0
-  startPosition: {fileID: 0}
+  forwardSpeed: 5
+  horizontalSpeed: 5
+  laneDistance: 2
+  startPosition: {fileID: 9033844071778842946, guid: 3f936b1c9ffe085469f28fd006e0cbc4, type: 3}
