@@ -26,6 +26,7 @@ public class GroundService
         lastSpawnedGroundObjectOffsetZ += offsetZ;
         tempController.ActivateView();
         tempController.SetGroundObjectPosition(new Vector3(0,spawnOffsetY,lastSpawnedGroundObjectOffsetZ));
+        tempController.SpawnObstacle();
     }
 
     public GroundObjectPool GetGroundObjectPool() => groundObjectPool;

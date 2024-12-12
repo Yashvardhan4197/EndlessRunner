@@ -37,5 +37,9 @@ public class PlayerController
         targetXPos = currentLane * playerDataSO.LaneDistance;
     }
 
+    public void PerformJump()
+    {
+        rb.velocity += playerDataSO.JumpSpeed * Vector3.up;
+    }
 }
 

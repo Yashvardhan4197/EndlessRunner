@@ -21,6 +21,10 @@ public class PlayerView : MonoBehaviour
         {
             playerController.MoveLane(+1);
         }
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            playerController.PerformJump();
+        }
     }
 
     public void SetController(PlayerController playerController)
