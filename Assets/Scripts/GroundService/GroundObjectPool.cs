@@ -50,10 +50,10 @@ public class GroundObjectPool
         }
     }
 
-}
+    public class PooledItem
+    {
+        public GroundObjectController groundObjectController;
+        public bool isUsed;
+    }
 
-public class PooledItem
-{
-    public GroundObjectController groundObjectController;
-    public bool isUsed;
 }

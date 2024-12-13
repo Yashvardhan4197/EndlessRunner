@@ -7,7 +7,7 @@ public class GroundObjectView : MonoBehaviour
     private GroundObjectController groundObjectController;
     [SerializeField] float reachingSpeed;
     [SerializeField] List<ObstacleCollection> obstacleCollections;
-
+    [SerializeField] BoxCollider pickupBounds;
     private void Update()
     {
         transform.position=Vector3.Lerp(transform.position,new Vector3(0,0,transform.position.z),reachingSpeed*Time.deltaTime);
@@ -29,4 +29,5 @@ public class GroundObjectView : MonoBehaviour
     }
 
     public List<ObstacleCollection> GetObstacleCollection() => obstacleCollections;
+    public BoxCollider GetPickupBounds() => pickupBounds;
 }

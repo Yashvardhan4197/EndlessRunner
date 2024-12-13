@@ -117,4 +117,7 @@ public class GroundObjectController
             element.ObstacleGB.SetActive(false);
         }
     }
+
+    public BoxCollider GetPickupBounds()=>groundObjectView.GetPickupBounds();
+
 }

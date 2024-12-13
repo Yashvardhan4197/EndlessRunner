@@ -24,9 +24,10 @@ public class GameService : MonoBehaviour
     [SerializeField] Transform startPosition;
     [SerializeField] PlayerDataSO playerDataSO;
     [SerializeField] GroundObjectView groundPrefab;
+    [SerializeField] PickupView pickupPrefab;
     [SerializeField] float groundOffsetZ;
     [SerializeField] float groundOffsetY;
-
+    [SerializeField] int pickupCount;
     //Services
     private PlayerService playerService;
     private GroundService groundService;
@@ -36,7 +37,7 @@ public class GameService : MonoBehaviour
     private void Init()
     {
         playerService = new PlayerService(playerView,playerDataSO);
-        groundService=new GroundService(groundPrefab,groundOffsetZ,groundOffsetY);
+        groundService=new GroundService(groundPrefab,pickupPrefab,groundOffsetZ,groundOffsetY,pickupCount);
         Debug.Log("Hello");
     }
 
