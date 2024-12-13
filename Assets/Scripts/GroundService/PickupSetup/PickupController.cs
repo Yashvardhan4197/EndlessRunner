@@ -4,22 +4,25 @@ using UnityEngine;
 public class PickupController
 {
     private PickupView pickupView;
+    private int currentlyActiveIndex;
+    public int CurrentlyActiveIndex {  get { return currentlyActiveIndex; } }
     public PickupController(PickupView pickupView)
     {
 
         this.pickupView = Object.Instantiate(pickupView);
         this.pickupView.SetController(this);
+        currentlyActiveIndex = -1;
     }
 
-    public void ActivatePickup()
+    public void EnablePickup()
     {
         pickupView.gameObject.SetActive(true);
         //ChangeAfterWords
         pickupView.GetPickupCollection()[0].pickupBody.SetActive(true);
-        pickupView.SetPickupIndex(0);
+        currentlyActiveIndex = 0;
     }
 
-    public void DeactivatePickup()
+    public void DisablePickups()
     {
         foreach(var item in  pickupView.GetPickupCollection())
         {
@@ -64,5 +67,15 @@ public class PickupController
     {
         pickupView.gameObject.SetActive(false);
         GameService.Instance.GroundService.GetPickupPool().ReturnToPool(this);
+        currentlyActiveIndex = -1;
+    }
+
+    public void ActivatePickupPower()
+    {
+        //Add more PickupType logic here
+        if(pickupView.GetPickupCollection()[currentlyActiveIndex].pickupType== PickupType.COIN)
+        {
+            Debug.Log("Score Increased");
+        }
     }
 }

@@ -39,13 +39,12 @@ public class GroundService
 
     private void SpawnPickup(BoxCollider boxCollider,List<Vector3> currentlySpawnedPickups)
     {
-        Debug.Log("Pickup Spawned");
         int temp = pickupCount;
         while(temp>0)
         {
             PickupController pickupController = pickupPool.GetPooledItem();
             pickupController.SetPickUpTransform(boxCollider,lastSpawnedGroundObjectOffsetZ,currentlySpawnedPickups);
-            pickupController.ActivatePickup();
+            pickupController.EnablePickup();
             temp--;
         }
 
