@@ -1124,7 +1124,7 @@ GameObject:
   - component: {fileID: 1378111898806863638}
   - component: {fileID: 8417074522339299751}
   - component: {fileID: 7419037379347930110}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: groundObjectPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}

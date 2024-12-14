@@ -499,6 +499,7 @@ MonoBehaviour:
   groundOffsetZ: 7
   groundOffsetY: -5
   pickupCount: 3
+  powerUpSpawningRate: 10
 --- !u!4 &1106170233
 Transform:
   m_ObjectHideFlags: 0

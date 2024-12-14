@@ -5,7 +5,9 @@ public class PlayerView : MonoBehaviour
 {
     [SerializeField] Rigidbody rb;
     private PlayerController playerController;
-
+    [SerializeField] Transform jumpRadiusPosition;
+    [SerializeField] float jumpRadius;
+    [SerializeField] LayerMask groundLayerMask;
     private void Start()
     {
         playerController?.OnGameStart();
@@ -29,7 +31,11 @@ public class PlayerView : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            playerController.PerformJump();
+            bool isGround = Physics.CheckSphere(jumpRadiusPosition.position, jumpRadius, groundLayerMask);
+            if (isGround)
+            {
+                playerController.PerformJump();
+            }
         }
     }
 
