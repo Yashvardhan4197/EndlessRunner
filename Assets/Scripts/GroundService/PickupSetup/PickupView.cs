@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class PickupView : MonoBehaviour
@@ -31,17 +30,4 @@ public class PickupView : MonoBehaviour
         }
     }
 
-}
-
-[Serializable] 
-public class PickupCollection
-{
-    public PickupType pickupType;
-    public GameObject pickupBody;
-}
-
-public enum PickupType
-{
-    COIN,
-    DOUBLE_SPEED
 }

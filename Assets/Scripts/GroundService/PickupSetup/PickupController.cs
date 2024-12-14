@@ -102,6 +102,9 @@ public class PickupController
         else if (pickupView.GetPickupCollection()[currentlyActiveIndex].pickupType==PickupType.DOUBLE_SPEED)
         {
             Debug.Log("Speedincreased");
+        }else if(pickupView.GetPickupCollection()[currentlyActiveIndex].pickupType == PickupType.DOUBLE_COIN)
+        {
+            Debug.Log("Coin Doubled");
         }
     }
 }
