@@ -8,6 +8,7 @@ public class PlayerController
     private Rigidbody rb;
     private int currentLane;
     private float targetXPos;
+    private bool doubleSpeedCheck;
     public PlayerController(PlayerView playerView,PlayerDataSO playerDataSO)
     {
         this.playerView = playerView;
@@ -21,12 +22,19 @@ public class PlayerController
         playerView.gameObject.transform.position = playerDataSO.StartPosition.position;
         currentLane = 0;
         targetXPos=playerView.transform.position.x;
+        doubleSpeedCheck = false;
     }
     
     public void Move()
     {
-        rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, playerDataSO.ForwardSpeed);
-
+        if (!doubleSpeedCheck)
+        {
+            rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, playerDataSO.ForwardSpeed);
+        }
+        else
+        {
+            rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, playerDataSO.ForwardSpeed*2);
+        }
         Vector3 newPos = new Vector3(targetXPos, rb.position.y, rb.position.z);
         rb.MovePosition(Vector3.Lerp(rb.position, newPos, playerDataSO.HorizontalSpeed * Time.deltaTime));
     }
@@ -51,5 +59,7 @@ public class PlayerController
     {
         GameService.Instance.GroundService.SpawnGroundObject();
     }
+
+    public void SetDoubleSpeedCheck(bool check) => doubleSpeedCheck = check;
 }
 
