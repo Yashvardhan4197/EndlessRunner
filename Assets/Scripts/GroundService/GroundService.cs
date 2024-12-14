@@ -10,13 +10,16 @@ public class GroundService
     private float offsetZ;
     private float spawnOffsetY;
     private int pickupCount;
-    public GroundService(GroundObjectView groundObjectView,PickupView pickupView,float offsetZ,float offsetY,int pickupCount)
+    private int powerUpSpawningRate;
+
+    public GroundService(GroundObjectView groundObjectView,PickupView pickupView,float offsetZ,float offsetY,int pickupCount, int powerUpSpawningRate)
     {
         groundObjectPool = new GroundObjectPool(groundObjectView);
         pickupPool = new PickupPool(pickupView);
         this.offsetZ = offsetZ;
         this.spawnOffsetY = offsetY;
         this.pickupCount=pickupCount;
+        this.powerUpSpawningRate=powerUpSpawningRate;
         OnGameStart();
     }
 
@@ -44,10 +47,22 @@ public class GroundService
         {
             PickupController pickupController = pickupPool.GetPooledItem();
             pickupController.SetPickUpTransform(boxCollider,lastSpawnedGroundObjectOffsetZ,currentlySpawnedPickups);
-            pickupController.EnablePickup();
+            pickupController.EnableCoinPickup();
             temp--;
         }
+        SpawnPowerUpPickup(boxCollider, currentlySpawnedPickups);
 
+    }
+
+    private void SpawnPowerUpPickup(BoxCollider boxCollider,List<Vector3> currentlySpawnedPickups)
+    {
+        int rand = Random.Range(0, 100);
+        if(rand<=powerUpSpawningRate)
+        {
+            PickupController pickupController = pickupPool.GetPooledItem();
+            pickupController.SetPickUpTransform(boxCollider, lastSpawnedGroundObjectOffsetZ, currentlySpawnedPickups);
+            pickupController.EnablePowerPickup();
+        }
     }
 
 

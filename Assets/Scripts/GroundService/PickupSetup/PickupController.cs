@@ -14,20 +14,42 @@ public class PickupController
         currentlyActiveIndex = -1;
     }
 
-    public void EnablePickup()
+    public void EnableCoinPickup()
     {
         pickupView.gameObject.SetActive(true);
         //ChangeAfterWords
-        pickupView.GetPickupCollection()[0].pickupBody.SetActive(true);
+        DisableAllInsidePickup();
+        GetPickupBody(PickupType.COIN).gameObject.SetActive(true);
         currentlyActiveIndex = 0;
     }
 
-    public void DisablePickups()
+    public void EnablePowerPickup()
+    {
+        pickupView.gameObject.SetActive(true);
+        DisableAllInsidePickup();
+        int rand=Random.Range(1,pickupView.GetPickupCollection().Length);
+        GetPickupBody(pickupView.GetPickupCollection()[rand].pickupType).gameObject.SetActive(true);
+        currentlyActiveIndex=rand;
+    }
+
+    private void DisableAllInsidePickup()
     {
         foreach(var item in  pickupView.GetPickupCollection())
         {
             item.pickupBody.SetActive(false);
         }
+    }
+
+    private GameObject GetPickupBody(PickupType pickupType)
+    {
+        foreach(var item in pickupView.GetPickupCollection())
+        {
+            if(item.pickupType== pickupType)
+            {
+                return item.pickupBody;
+            }
+        }
+        return null;
     }
 
     public void SetPickUpTransform(BoxCollider boxCollider,float offsetZ,List<Vector3>currentlySpawnedPickups)
@@ -76,6 +98,10 @@ public class PickupController
         if(pickupView.GetPickupCollection()[currentlyActiveIndex].pickupType== PickupType.COIN)
         {
             Debug.Log("Score Increased");
+        }
+        else if (pickupView.GetPickupCollection()[currentlyActiveIndex].pickupType==PickupType.DOUBLE_SPEED)
+        {
+            Debug.Log("Speedincreased");
         }
     }
 }

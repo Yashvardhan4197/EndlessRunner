@@ -42,5 +42,6 @@ public class PickupCollection
 
 public enum PickupType
 {
-    COIN
+    COIN,
+    DOUBLE_SPEED
 }

@@ -28,6 +28,7 @@ public class GameService : MonoBehaviour
     [SerializeField] float groundOffsetZ;
     [SerializeField] float groundOffsetY;
     [SerializeField] int pickupCount;
+    [SerializeField] int powerUpSpawningRate;
     //Services
     private PlayerService playerService;
     private GroundService groundService;
@@ -37,7 +38,7 @@ public class GameService : MonoBehaviour
     private void Init()
     {
         playerService = new PlayerService(playerView,playerDataSO);
-        groundService=new GroundService(groundPrefab,pickupPrefab,groundOffsetZ,groundOffsetY,pickupCount);
+        groundService=new GroundService(groundPrefab,pickupPrefab,groundOffsetZ,groundOffsetY,pickupCount,powerUpSpawningRate);
         Debug.Log("Hello");
     }
 
