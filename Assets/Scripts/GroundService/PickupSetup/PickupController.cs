@@ -17,7 +17,6 @@ public class PickupController
     public void EnableCoinPickup()
     {
         pickupView.gameObject.SetActive(true);
-        //ChangeAfterWords
         DisableAllInsidePickup();
         GetPickupBody(PickupType.COIN).gameObject.SetActive(true);
         currentlyActiveIndex = 0;

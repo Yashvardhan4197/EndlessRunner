@@ -20,7 +20,7 @@ public class GroundService
         this.spawnOffsetY = offsetY;
         this.pickupCount=pickupCount;
         this.powerUpSpawningRate=powerUpSpawningRate;
-        OnGameStart();
+        GameService.Instance.GameStartAction += OnGameStart;
     }
 
     public void OnGameStart()

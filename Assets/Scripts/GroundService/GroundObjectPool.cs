@@ -11,6 +11,7 @@ public class GroundObjectPool
     public GroundObjectPool(GroundObjectView groundObjectView)
     {
         this.groundObjectView = groundObjectView;
+        GameService.Instance.GameStartAction += OnGameStart;
     }
 
     private GroundObjectController CreatePooledItem()

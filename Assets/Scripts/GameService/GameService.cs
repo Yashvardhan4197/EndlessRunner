@@ -1,5 +1,6 @@
 
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GameService : MonoBehaviour
 {
@@ -19,8 +20,11 @@ public class GameService : MonoBehaviour
         }
     }
 
-    //Data
+    //VIEWS
     [SerializeField] PlayerView playerView;
+    [SerializeField] LobbyView lobbyView;
+
+    //DATA
     [SerializeField] Transform startPosition;
     [SerializeField] PlayerDataSO playerDataSO;
     [SerializeField] GroundObjectView groundPrefab;
@@ -29,17 +33,23 @@ public class GameService : MonoBehaviour
     [SerializeField] float groundOffsetY;
     [SerializeField] int pickupCount;
     [SerializeField] int powerUpSpawningRate;
+
     //Services
     private PlayerService playerService;
     private GroundService groundService;
+    private UIService uIService;
     public PlayerService PlayerService { get { return playerService; } }
     public GroundService GroundService { get { return groundService; } }
+    public UIService UIService { get { return uIService; } }
+
+    //ACTIONS
+    public UnityAction GameStartAction;
 
     private void Init()
     {
         playerService = new PlayerService(playerView,playerDataSO);
         groundService=new GroundService(groundPrefab,pickupPrefab,groundOffsetZ,groundOffsetY,pickupCount,powerUpSpawningRate);
-        Debug.Log("Hello");
+        uIService=new UIService(lobbyView);
     }
 
 

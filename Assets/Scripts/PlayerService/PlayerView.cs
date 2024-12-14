@@ -15,26 +15,32 @@ public class PlayerView : MonoBehaviour
 
     private void FixedUpdate()
     {
-        playerController.Move();
+        if (playerController.GamePaused==false)
+        {
+            playerController.Move();
+        }
         
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
+        if (playerController.GamePaused==false)
         {
-            playerController.MoveLane(-1);
-        }
-        else if (Input.GetKeyDown(KeyCode.D))
-        {
-            playerController.MoveLane(+1);
-        }
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            bool isGround = Physics.CheckSphere(jumpRadiusPosition.position, jumpRadius, groundLayerMask);
-            if (isGround)
+            if (Input.GetKeyDown(KeyCode.A))
             {
-                playerController.PerformJump();
+                playerController.MoveLane(-1);
+            }
+            else if (Input.GetKeyDown(KeyCode.D))
+            {
+                playerController.MoveLane(+1);
+            }
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                bool isGround = Physics.CheckSphere(jumpRadiusPosition.position, jumpRadius, groundLayerMask);
+                if (isGround)
+                {
+                    playerController.PerformJump();
+                }
             }
         }
     }

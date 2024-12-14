@@ -9,6 +9,7 @@ public class PickupPool
     public PickupPool(PickupView pickupView)
     {
         this.pickupView = pickupView;
+        GameService.Instance.GameStartAction += OnGameStart;
     }
 
     private PickupController CreatePooledItem()
@@ -44,7 +45,7 @@ public class PickupPool
     {
         foreach(PooledItem item in pooledItems)
         {
-            //implement later
+            item.pickupController.ReturnToPool();
         }
     }
 

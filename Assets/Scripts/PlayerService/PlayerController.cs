@@ -9,12 +9,16 @@ public class PlayerController
     private int currentLane;
     private float targetXPos;
     private bool doubleSpeedCheck;
+    private bool gamePaused;
+    public bool GamePaused { get { return gamePaused; } }
     public PlayerController(PlayerView playerView,PlayerDataSO playerDataSO)
     {
         this.playerView = playerView;
         this.playerDataSO = playerDataSO;
         playerView.SetController(this);
         rb=playerView.GetRigidbody();
+        GameService.Instance.GameStartAction += OnGameStart;
+        gamePaused = true;
     }
 
     public void OnGameStart()
@@ -23,6 +27,7 @@ public class PlayerController
         currentLane = 0;
         targetXPos=playerView.transform.position.x;
         doubleSpeedCheck = false;
+        gamePaused = false;
     }
     
     public void Move()
