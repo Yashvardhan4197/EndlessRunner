@@ -96,7 +96,7 @@ public class PickupController
         //Add more PickupType logic here
         if(pickupView.GetPickupCollection()[currentlyActiveIndex].pickupType== PickupType.COIN)
         {
-            Debug.Log("Score Increased");
+            GameService.Instance.UIService.GetInGameUIController().IncrementScore();
         }
         else if (pickupView.GetPickupCollection()[currentlyActiveIndex].pickupType==PickupType.DOUBLE_SPEED)
         {

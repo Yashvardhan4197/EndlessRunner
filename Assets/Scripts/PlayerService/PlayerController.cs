@@ -66,5 +66,23 @@ public class PlayerController
     }
 
     public void SetDoubleSpeedCheck(bool check) => doubleSpeedCheck = check;
+
+    public void SetPauseStatus()
+    {
+        if (gamePaused)
+        {
+            SetPauseStatus(false);
+        }
+        else
+        {
+            SetPauseStatus(true);
+        }
+    }
+
+    public void SetPauseStatus(bool pause)
+    {
+        gamePaused=pause;
+    }
+
 }
 

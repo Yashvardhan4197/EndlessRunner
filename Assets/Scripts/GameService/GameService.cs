@@ -23,6 +23,7 @@ public class GameService : MonoBehaviour
     //VIEWS
     [SerializeField] PlayerView playerView;
     [SerializeField] LobbyView lobbyView;
+    [SerializeField] InGameUIView inGameUIView;
 
     //DATA
     [SerializeField] Transform startPosition;
@@ -49,7 +50,8 @@ public class GameService : MonoBehaviour
     {
         playerService = new PlayerService(playerView,playerDataSO);
         groundService=new GroundService(groundPrefab,pickupPrefab,groundOffsetZ,groundOffsetY,pickupCount,powerUpSpawningRate);
-        uIService=new UIService(lobbyView);
+        uIService=new UIService(lobbyView,inGameUIView);
+        UIService.GetLobbyController().OpenLobby();
     }
 
 

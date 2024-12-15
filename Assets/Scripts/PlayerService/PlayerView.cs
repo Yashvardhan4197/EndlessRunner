@@ -43,6 +43,7 @@ public class PlayerView : MonoBehaviour
                 }
             }
         }
+
     }
 
     public void SetController(PlayerController playerController)
