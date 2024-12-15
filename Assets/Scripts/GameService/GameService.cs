@@ -45,6 +45,7 @@ public class GameService : MonoBehaviour
 
     //ACTIONS
     public UnityAction GameStartAction;
+    public UnityAction GameLostAction;
 
     private void Init()
     {

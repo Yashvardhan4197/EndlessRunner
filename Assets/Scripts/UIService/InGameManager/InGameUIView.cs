@@ -1,4 +1,5 @@
 
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,6 +12,10 @@ public class InGameUIView : MonoBehaviour
     [SerializeField] GameObject pauseMenuGB;
     [SerializeField] Button ResumeFromPauseMenuButton;
     [SerializeField] Button ExitToLobbyScreenButton;
+
+    [SerializeField] GameObject lostGameMenuGB;
+    [SerializeField] Button RestartFromLostMenuButton;
+    [SerializeField] Button ExitToLobbyScreenButtonLostMenu;
     public void SetController(InGameUIController inGameUIController)
     {
         this.inGameUIController = inGameUIController;  
@@ -20,8 +25,15 @@ public class InGameUIView : MonoBehaviour
     {
         ResumeFromPauseMenuButton.onClick.AddListener(OnResumeFromPauseButtonClicked);
         ExitToLobbyScreenButton.onClick.AddListener(OnExitToLobbyScreenButtonClicked);
+
+        RestartFromLostMenuButton.onClick.AddListener(RestartGame);
+        ExitToLobbyScreenButtonLostMenu.onClick.AddListener(OnExitToLobbyScreenButtonClicked);
     }
 
+    private void RestartGame()
+    {
+        inGameUIController.RestartGame();
+    }
 
     private void OnResumeFromPauseButtonClicked()
     {
@@ -43,6 +55,8 @@ public class InGameUIView : MonoBehaviour
 
 
     public GameObject GetPauseMenuGB() => pauseMenuGB;
+
+    public GameObject GetLostMenuGB() => lostGameMenuGB;
 
     public TextMeshProUGUI GetScoreText() => scoreText;
 }

@@ -57,7 +57,7 @@ public class PlayerController
 
     public void OnPlayerDead()
     {
-        Debug.Log("GameLost");
+        GameService.Instance.GameLostAction?.Invoke();
     }
 
     public void SpawnGround()
