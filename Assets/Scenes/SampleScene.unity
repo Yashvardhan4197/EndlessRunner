@@ -152,7 +152,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.528
+  m_Volume: 0.102
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -280,7 +280,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.259
+  m_Volume: 0.115
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -841,7 +841,7 @@ GameObject:
   - component: {fileID: 258055651}
   - component: {fileID: 258055650}
   m_Layer: 0
-  m_Name: PickupAudioSource
+  m_Name: SpecialAudioSource
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -859,13 +859,13 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.626
+  m_Volume: 0.377
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 204
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -2321,13 +2321,13 @@ MonoBehaviour:
   groundOffsetZ: 7
   groundOffsetY: -5
   pickupCount: 3
-  powerUpSpawningRate: 50
+  powerUpSpawningRate: 15
   pickupDataSO: {fileID: 11400000, guid: 7832eacc21caa6a4d9ffcaf1274ea376, type: 2}
   groundParent: {fileID: 604567566}
   pickupParent: {fileID: 155715811}
   bgAudioSource: {fileID: 38128526}
   sFXAudioSource: {fileID: 29435702}
-  pickupAudioSource: {fileID: 258055650}
+  SpecialAudioSource: {fileID: 258055650}
   soundTypes:
   - soundName: 0
     soundClip: {fileID: 8300000, guid: 448469435ad421c4687a546db2c31cc7, type: 3}
@@ -2336,7 +2336,7 @@ MonoBehaviour:
   - soundName: 4
     soundClip: {fileID: 8300000, guid: b616bed2685c1b54c8eab8986b2b08ad, type: 3}
   - soundName: 5
-    soundClip: {fileID: 8300000, guid: 2f38da8a844a40a44aabf9c8e8474093, type: 3}
+    soundClip: {fileID: 8300000, guid: 1886949203b847b45871eef62c206dd4, type: 3}
   - soundName: 2
     soundClip: {fileID: 8300000, guid: fae73d97772aa43489fae225e74f9eb8, type: 3}
   - soundName: 3
