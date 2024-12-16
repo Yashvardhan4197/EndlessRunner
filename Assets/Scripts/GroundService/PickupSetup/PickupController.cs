@@ -96,7 +96,6 @@ public class PickupController
 
     public void ActivatePickupPower()
     {
-        //Add more PickupType logic here
         if(pickupView.GetPickupCollection()[currentlyActiveIndex].pickupType== PickupType.COIN)
         {
             GameService.Instance.UIService.GetInGameUIController().IncrementScore();
@@ -105,32 +104,36 @@ public class PickupController
         {
             int maxTime=0;
             Sprite pickupImage=null;
+            string pickUpName = "";
             for(int i=0;i<pickupDataSO.PickupDataElementCollections.Length;i++)
             {
                 if (pickupDataSO.PickupDataElementCollections[i].PickupType==PickupType.DOUBLE_SPEED)
                 {
                     maxTime = pickupDataSO.PickupDataElementCollections[i].MaxTime;
                     pickupImage = pickupDataSO.PickupDataElementCollections[i].PickupImage;
+                    pickUpName = pickupDataSO.PickupDataElementCollections[i].PickupName;
                     break;
                 }
             }
-            GameService.Instance.UIService.GetInGameUIController().OnPickupPowerActivated(PickupType.DOUBLE_SPEED, maxTime, pickupImage);
+            GameService.Instance.UIService.GetInGameUIController().OnPickupPowerActivated(PickupType.DOUBLE_SPEED, maxTime, pickupImage,pickUpName);
             GameService.Instance.SoundService.PlaySpecialSound(Sound.DOUBLE_SPEED);
         }
         else if(pickupView.GetPickupCollection()[currentlyActiveIndex].pickupType == PickupType.DOUBLE_COIN)
         {
             int maxTime = 0;
             Sprite pickupImage = null;
+            string pickUpName = "";
             for (int i = 0; i < pickupDataSO.PickupDataElementCollections.Length; i++)
             {
                 if (pickupDataSO.PickupDataElementCollections[i].PickupType == PickupType.DOUBLE_COIN)
                 {
                     maxTime = pickupDataSO.PickupDataElementCollections[i].MaxTime;
                     pickupImage = pickupDataSO.PickupDataElementCollections[i].PickupImage;
+                    pickUpName = pickupDataSO.PickupDataElementCollections[i].PickupName;
                     break;
                 }
             }
-            GameService.Instance.UIService.GetInGameUIController().OnPickupPowerActivated(PickupType.DOUBLE_COIN, maxTime, pickupImage);
+            GameService.Instance.UIService.GetInGameUIController().OnPickupPowerActivated(PickupType.DOUBLE_COIN, maxTime, pickupImage, pickUpName);
             GameService.Instance.SoundService.PlaySpecialSound(Sound.DOUBLE_COIN);
         }
     }

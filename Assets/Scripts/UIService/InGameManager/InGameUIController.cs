@@ -114,6 +114,7 @@ public class InGameUIController
 
     public void ExitToLobby()
     {
+        GameService.Instance.SoundService.PlaySpecialSound(Sound.BUTTON_CLICK);
         GameService.Instance.UIService.GetLobbyController().OpenLobby();
         inGameUIView.gameObject.SetActive(false);
         inGameUIView.GetPauseMenuGB().SetActive(false);
@@ -164,7 +165,7 @@ public class InGameUIController
         GameService.Instance.SoundService.PlaySpecialSound(Sound.GAME_LOST);
     }
 
-    public void OnPickupPowerActivated(PickupType pickupType, float pickupTime, Sprite pickupImage)
+    public void OnPickupPowerActivated(PickupType pickupType, float pickupTime, Sprite pickupImage,string pickUpName)
     {
         if (pickupBarsCollection.ContainsKey(pickupType)==false)
         {
@@ -173,6 +174,7 @@ public class InGameUIController
             newPickUpBar.gameObject.GetComponent<RectTransform>().sizeDelta = Vector2.one;
             newPickUpBar.SetMaxTime(pickupTime);
             newPickUpBar.GetPickUpImage().sprite = pickupImage;
+            newPickUpBar.GetPickupName().text = pickUpName;
             pickupBarsCollection.Add(pickupType, newPickUpBar);
             ActivatePowerPickup(pickupType);
         }

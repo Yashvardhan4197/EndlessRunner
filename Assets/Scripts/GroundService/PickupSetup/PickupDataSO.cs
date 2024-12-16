@@ -10,6 +10,7 @@ public class PickupDataSO:ScriptableObject
     public class PickupDataElementCollection
     {
         public PickupType PickupType;
+        public string PickupName;
         public Sprite PickupImage;
         public int MaxTime;
     }
