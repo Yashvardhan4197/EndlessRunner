@@ -7,10 +7,11 @@ public class GroundObjectPool
 {
     private GroundObjectView groundObjectView;
     private List<PooledItem> pooledItems=new List<PooledItem>();
-
-    public GroundObjectPool(GroundObjectView groundObjectView)
+    private Transform groundParent;
+    public GroundObjectPool(GroundObjectView groundObjectView,Transform groundParent)
     {
         this.groundObjectView = groundObjectView;
+        this.groundParent = groundParent;
         GameService.Instance.GameStartAction += OnGameStart;
     }
 
@@ -18,7 +19,7 @@ public class GroundObjectPool
     {
         PooledItem newItem = new PooledItem();
         newItem.isUsed = true;
-        newItem.groundObjectController = new GroundObjectController(groundObjectView);
+        newItem.groundObjectController = new GroundObjectController(groundObjectView,groundParent);
         pooledItems.Add(newItem);
         return newItem.groundObjectController;
     }

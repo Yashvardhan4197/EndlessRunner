@@ -12,10 +12,10 @@ public class GroundService
     private int pickupCount;
     private int powerUpSpawningRate;
 
-    public GroundService(GroundObjectView groundObjectView,PickupView pickupView,float offsetZ,float offsetY,int pickupCount, int powerUpSpawningRate,PickupDataSO pickupDataSO)
+    public GroundService(GroundObjectView groundObjectView,PickupView pickupView,float offsetZ,float offsetY,int pickupCount, int powerUpSpawningRate,PickupDataSO pickupDataSO,Transform groundParent, Transform pickupParent)
     {
-        groundObjectPool = new GroundObjectPool(groundObjectView);
-        pickupPool = new PickupPool(pickupView,pickupDataSO);
+        groundObjectPool = new GroundObjectPool(groundObjectView,groundParent);
+        pickupPool = new PickupPool(pickupView,pickupDataSO,pickupParent);
         this.offsetZ = offsetZ;
         this.spawnOffsetY = offsetY;
         this.pickupCount=pickupCount;

@@ -1,14 +1,17 @@
 ﻿using System.Collections.Generic;
 using System;
+using UnityEngine;
 
 public class PickupPool
 {
     private PickupView pickupView;
     private List<PooledItem> pooledItems = new List<PooledItem>();
     private PickupDataSO pickupDataSO;
-    public PickupPool(PickupView pickupView,PickupDataSO pickupDataSO)
+    private Transform pickupParent;
+    public PickupPool(PickupView pickupView,PickupDataSO pickupDataSO,Transform pickupParent)
     {
         this.pickupView = pickupView;
+        this.pickupParent = pickupParent;
         GameService.Instance.GameStartAction += OnGameStart;
         this.pickupDataSO = pickupDataSO;
     }
@@ -17,7 +20,7 @@ public class PickupPool
     {
         PooledItem newItem = new PooledItem();
         newItem.isUsed = true;
-        newItem.pickupController = new PickupController(pickupView,pickupDataSO);
+        newItem.pickupController = new PickupController(pickupView,pickupDataSO,pickupParent);
         pooledItems.Add(newItem);
         return newItem.pickupController;
     }

@@ -7,9 +7,10 @@ public class GroundObjectController
 {
     private GroundObjectView groundObjectView;
     private List<ObstacleCollection> obstacleCollections;
-    public GroundObjectController(GroundObjectView groundObjectView)
+    public GroundObjectController(GroundObjectView groundObjectView,Transform groundViewParent)
     {
         this.groundObjectView=Object.Instantiate(groundObjectView);
+        this.groundObjectView.transform.parent = groundViewParent;
         ActivateView();
         this.groundObjectView.SetController(this);
         obstacleCollections = this.groundObjectView.GetObstacleCollection();

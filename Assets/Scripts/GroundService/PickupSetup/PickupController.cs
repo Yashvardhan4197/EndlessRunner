@@ -8,9 +8,10 @@ public class PickupController
     private int currentlyActiveIndex;
     private PickupDataSO pickupDataSO;
     public int CurrentlyActiveIndex {  get { return currentlyActiveIndex; } }
-    public PickupController(PickupView pickupView,PickupDataSO pickupDataSO)
+    public PickupController(PickupView pickupView,PickupDataSO pickupDataSO,Transform pickUpViewParent)
     {
         this.pickupView = Object.Instantiate(pickupView);
+        this.pickupView.transform.parent = pickUpViewParent;
         this.pickupDataSO = pickupDataSO;
         this.pickupView.SetController(this);
         currentlyActiveIndex = -1;
