@@ -41,15 +41,20 @@ public class GameService : MonoBehaviour
     [SerializeField] PickupDataSO pickupDataSO;
     [SerializeField] Transform groundParent;
     [SerializeField] Transform pickupParent;
+    [SerializeField] AudioSource bgAudioSource;
+    [SerializeField] AudioSource sFXAudioSource;
+    [SerializeField] SoundType[] soundTypes;
     #endregion
 
     #region SERVICES
     private PlayerService playerService;
     private GroundService groundService;
     private UIService uIService;
+    private SoundService soundService;
     public PlayerService PlayerService { get { return playerService; } }
     public GroundService GroundService { get { return groundService; } }
     public UIService UIService { get { return uIService; } }
+    public SoundService SoundService {  get { return soundService; } }
     #endregion
 
     # region ACTIONS
@@ -62,7 +67,9 @@ public class GameService : MonoBehaviour
         playerService = new PlayerService(playerView,playerDataSO);
         groundService=new GroundService(groundPrefab,pickupPrefab,groundOffsetZ,groundOffsetY,pickupCount,powerUpSpawningRate,pickupDataSO,groundParent,pickupParent);
         uIService=new UIService(lobbyView,inGameUIView,pickupUIPrefab);
+        soundService=new SoundService(bgAudioSource,sFXAudioSource,soundTypes);
         UIService.GetLobbyController().OpenLobby();
+        soundService.PlayBackGroundMusic(Sound.BACKGROUND_MUSIC);
     }
 
 
