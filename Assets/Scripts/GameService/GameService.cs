@@ -24,6 +24,7 @@ public class GameService : MonoBehaviour
     [SerializeField] PlayerView playerView;
     [SerializeField] LobbyView lobbyView;
     [SerializeField] InGameUIView inGameUIView;
+    [SerializeField] PickupUIView pickupUIPrefab;
 
     //DATA
     [SerializeField] Transform startPosition;
@@ -34,7 +35,7 @@ public class GameService : MonoBehaviour
     [SerializeField] float groundOffsetY;
     [SerializeField] int pickupCount;
     [SerializeField] int powerUpSpawningRate;
-
+    [SerializeField] PickupDataSO pickupDataSO;
     //Services
     private PlayerService playerService;
     private GroundService groundService;
@@ -50,8 +51,8 @@ public class GameService : MonoBehaviour
     private void Init()
     {
         playerService = new PlayerService(playerView,playerDataSO);
-        groundService=new GroundService(groundPrefab,pickupPrefab,groundOffsetZ,groundOffsetY,pickupCount,powerUpSpawningRate);
-        uIService=new UIService(lobbyView,inGameUIView);
+        groundService=new GroundService(groundPrefab,pickupPrefab,groundOffsetZ,groundOffsetY,pickupCount,powerUpSpawningRate,pickupDataSO);
+        uIService=new UIService(lobbyView,inGameUIView,pickupUIPrefab);
         UIService.GetLobbyController().OpenLobby();
     }
 

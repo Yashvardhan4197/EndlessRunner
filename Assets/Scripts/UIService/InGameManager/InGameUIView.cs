@@ -8,7 +8,6 @@ public class InGameUIView : MonoBehaviour
 {
     private InGameUIController inGameUIController;
     [SerializeField] TextMeshProUGUI scoreText;
-    [SerializeField] RectTransform PickupContainerParent;
     [SerializeField] GameObject pauseMenuGB;
     [SerializeField] Button ResumeFromPauseMenuButton;
     [SerializeField] Button ExitToLobbyScreenButton;
@@ -16,6 +15,8 @@ public class InGameUIView : MonoBehaviour
     [SerializeField] GameObject lostGameMenuGB;
     [SerializeField] Button RestartFromLostMenuButton;
     [SerializeField] Button ExitToLobbyScreenButtonLostMenu;
+
+    [SerializeField] RectTransform pickupBarsParent;
     public void SetController(InGameUIController inGameUIController)
     {
         this.inGameUIController = inGameUIController;  
@@ -51,6 +52,7 @@ public class InGameUIView : MonoBehaviour
         {
             inGameUIController.TogglePauseMenu();
         }
+        inGameUIController?.Update();
     }
 
 
@@ -59,4 +61,6 @@ public class InGameUIView : MonoBehaviour
     public GameObject GetLostMenuGB() => lostGameMenuGB;
 
     public TextMeshProUGUI GetScoreText() => scoreText;
+
+    public RectTransform GetPickupBarParent() => pickupBarsParent;
 }

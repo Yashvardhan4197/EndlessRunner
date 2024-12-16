@@ -2,10 +2,10 @@
 {
     private LobbyController lobbyController;
     private InGameUIController inGameUIController;
-    public UIService(LobbyView lobbyView, InGameUIView inGameUIView)
+    public UIService(LobbyView lobbyView, InGameUIView inGameUIView,PickupUIView pickupUIPrefab)
     {
         lobbyController = new LobbyController(lobbyView);
-        inGameUIController = new InGameUIController(inGameUIView);
+        inGameUIController = new InGameUIController(inGameUIView,pickupUIPrefab);
     }
 
     public LobbyController GetLobbyController() => lobbyController;

@@ -1,15 +1,17 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PickupController
 {
     private PickupView pickupView;
     private int currentlyActiveIndex;
+    private PickupDataSO pickupDataSO;
     public int CurrentlyActiveIndex {  get { return currentlyActiveIndex; } }
-    public PickupController(PickupView pickupView)
+    public PickupController(PickupView pickupView,PickupDataSO pickupDataSO)
     {
-
         this.pickupView = Object.Instantiate(pickupView);
+        this.pickupDataSO = pickupDataSO;
         this.pickupView.SetController(this);
         currentlyActiveIndex = -1;
     }
@@ -100,9 +102,34 @@ public class PickupController
         }
         else if (pickupView.GetPickupCollection()[currentlyActiveIndex].pickupType==PickupType.DOUBLE_SPEED)
         {
+            int maxTime=0;
+            Sprite pickupImage=null;
+            for(int i=0;i<pickupDataSO.PickupDataElementCollections.Length;i++)
+            {
+                if (pickupDataSO.PickupDataElementCollections[i].PickupType==PickupType.DOUBLE_SPEED)
+                {
+                    maxTime = pickupDataSO.PickupDataElementCollections[i].MaxTime;
+                    pickupImage = pickupDataSO.PickupDataElementCollections[i].PickupImage;
+                    break;
+                }
+            }
+            GameService.Instance.UIService.GetInGameUIController().OnPickupPowerActivated(PickupType.DOUBLE_SPEED, maxTime, pickupImage);
             Debug.Log("Speedincreased");
-        }else if(pickupView.GetPickupCollection()[currentlyActiveIndex].pickupType == PickupType.DOUBLE_COIN)
+        }
+        else if(pickupView.GetPickupCollection()[currentlyActiveIndex].pickupType == PickupType.DOUBLE_COIN)
         {
+            int maxTime = 0;
+            Sprite pickupImage = null;
+            for (int i = 0; i < pickupDataSO.PickupDataElementCollections.Length; i++)
+            {
+                if (pickupDataSO.PickupDataElementCollections[i].PickupType == PickupType.DOUBLE_COIN)
+                {
+                    maxTime = pickupDataSO.PickupDataElementCollections[i].MaxTime;
+                    pickupImage = pickupDataSO.PickupDataElementCollections[i].PickupImage;
+                    break;
+                }
+            }
+            GameService.Instance.UIService.GetInGameUIController().OnPickupPowerActivated(PickupType.DOUBLE_COIN, maxTime, pickupImage);
             Debug.Log("Coin Doubled");
         }
     }

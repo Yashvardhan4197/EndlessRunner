@@ -5,18 +5,19 @@ public class PickupPool
 {
     private PickupView pickupView;
     private List<PooledItem> pooledItems = new List<PooledItem>();
-
-    public PickupPool(PickupView pickupView)
+    private PickupDataSO pickupDataSO;
+    public PickupPool(PickupView pickupView,PickupDataSO pickupDataSO)
     {
         this.pickupView = pickupView;
         GameService.Instance.GameStartAction += OnGameStart;
+        this.pickupDataSO = pickupDataSO;
     }
 
     private PickupController CreatePooledItem()
     {
         PooledItem newItem = new PooledItem();
         newItem.isUsed = true;
-        newItem.pickupController = new PickupController(pickupView);
+        newItem.pickupController = new PickupController(pickupView,pickupDataSO);
         pooledItems.Add(newItem);
         return newItem.pickupController;
     }
