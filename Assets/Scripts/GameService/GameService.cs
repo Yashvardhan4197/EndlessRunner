@@ -4,6 +4,7 @@ using UnityEngine.Events;
 
 public class GameService : MonoBehaviour
 {
+    #region SINGLETON
     private static GameService instance;
     public static GameService Instance { get { return instance; } }
 
@@ -19,14 +20,16 @@ public class GameService : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    #endregion
 
-    //VIEWS
+    #region VIEWS
     [SerializeField] PlayerView playerView;
     [SerializeField] LobbyView lobbyView;
     [SerializeField] InGameUIView inGameUIView;
     [SerializeField] PickupUIView pickupUIPrefab;
+    #endregion
 
-    //DATA
+    #region DATA
     [SerializeField] Transform startPosition;
     [SerializeField] PlayerDataSO playerDataSO;
     [SerializeField] GroundObjectView groundPrefab;
@@ -38,17 +41,21 @@ public class GameService : MonoBehaviour
     [SerializeField] PickupDataSO pickupDataSO;
     [SerializeField] Transform groundParent;
     [SerializeField] Transform pickupParent;
-    //Services
+    #endregion
+
+    #region SERVICES
     private PlayerService playerService;
     private GroundService groundService;
     private UIService uIService;
     public PlayerService PlayerService { get { return playerService; } }
     public GroundService GroundService { get { return groundService; } }
     public UIService UIService { get { return uIService; } }
+    #endregion
 
-    //ACTIONS
+    # region ACTIONS
     public UnityAction GameStartAction;
     public UnityAction GameLostAction;
+    #endregion
 
     private void Init()
     {
