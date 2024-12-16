@@ -6,12 +6,14 @@ public class SoundService
 {
     private AudioSource bgAudioSource;
     private AudioSource sFXAudioSource;
+    private AudioSource specialAudioSource;
     private SoundType[] soundTypes;
 
-    public SoundService(AudioSource bgAudioSource, AudioSource sFXAudioSource, SoundType[] soundTypes)
+    public SoundService(AudioSource bgAudioSource, AudioSource sFXAudioSource,AudioSource specialAudioSource, SoundType[] soundTypes)
     {
         this.bgAudioSource = bgAudioSource;
         this.sFXAudioSource = sFXAudioSource;
+        this.specialAudioSource=specialAudioSource;
         this.soundTypes = soundTypes;
     }
 
@@ -25,7 +27,7 @@ public class SoundService
         return item.soundClip;
     }
 
-    public void PlayBackGroundMusic(Sound soundName)
+    public void PlaySFX(Sound soundName)
     {
         AudioClip clip= GetAudioClip(soundName);
         if(clip != null)
@@ -34,13 +36,22 @@ public class SoundService
         }
     }
 
-    public void PlaySFX(Sound soundName)
+    public void PlayBackGroundAudio(Sound soundName)
     {
         AudioClip clip=GetAudioClip(soundName);
         if (clip!=null)
         {
             bgAudioSource.clip = clip;
             bgAudioSource.Play();
+        }
+    }
+
+    public void PlaySpecialSound(Sound soundName)
+    {
+        AudioClip clip = GetAudioClip(soundName);
+        if (clip != null)
+        {
+            specialAudioSource.PlayOneShot(clip);
         }
     }
 

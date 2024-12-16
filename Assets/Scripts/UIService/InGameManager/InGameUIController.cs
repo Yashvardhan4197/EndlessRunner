@@ -96,6 +96,7 @@ public class InGameUIController
             highScore = score;
             PlayerPrefs.SetInt("HighScore", highScore);
         }
+        GameService.Instance.SoundService.PlaySFX(Sound.SCORE_INCREMENT);
     }
 
     public void OpenPauseScreen()
@@ -134,6 +135,7 @@ public class InGameUIController
                 OpenPauseScreen();
             }
             GameService.Instance.PlayerService.GetPlayerController().SetPauseStatus(gamePaused);
+            GameService.Instance.SoundService.PlaySpecialSound(Sound.BUTTON_CLICK);
         }
     }
 
@@ -146,6 +148,7 @@ public class InGameUIController
 
     public void RestartGame()
     {
+        GameService.Instance.SoundService.PlaySFX(Sound.BUTTON_CLICK);
         GameService.Instance.GameStartAction?.Invoke();
         Time.timeScale = 1f;
     }
@@ -158,6 +161,7 @@ public class InGameUIController
         inGameUIView.GetLostScreenYourScoreText().text = "Your Score: " + score.ToString();
         Time.timeScale = 0f;
         gameLostStatus = true;
+        GameService.Instance.SoundService.PlaySpecialSound(Sound.GAME_LOST);
     }
 
     public void OnPickupPowerActivated(PickupType pickupType, float pickupTime, Sprite pickupImage)

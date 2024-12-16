@@ -115,7 +115,7 @@ public class PickupController
                 }
             }
             GameService.Instance.UIService.GetInGameUIController().OnPickupPowerActivated(PickupType.DOUBLE_SPEED, maxTime, pickupImage);
-            Debug.Log("Speedincreased");
+            GameService.Instance.SoundService.PlaySpecialSound(Sound.DOUBLE_SPEED);
         }
         else if(pickupView.GetPickupCollection()[currentlyActiveIndex].pickupType == PickupType.DOUBLE_COIN)
         {
@@ -131,7 +131,7 @@ public class PickupController
                 }
             }
             GameService.Instance.UIService.GetInGameUIController().OnPickupPowerActivated(PickupType.DOUBLE_COIN, maxTime, pickupImage);
-            Debug.Log("Coin Doubled");
+            GameService.Instance.SoundService.PlaySpecialSound(Sound.DOUBLE_COIN);
         }
     }
 }

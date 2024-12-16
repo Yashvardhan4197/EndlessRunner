@@ -14,12 +14,14 @@ public class LobbyController
 
     public void ExitGame()
     {
+        GameService.Instance.SoundService.PlaySFX(Sound.BUTTON_CLICK);
         Application.Quit();
     }
 
     public void StartGame()
     {
         GameService.Instance.GameStartAction?.Invoke();
+        GameService.Instance.SoundService.PlaySFX(Sound.BUTTON_CLICK);
         lobbyView.gameObject.SetActive(false);
         Time.timeScale = 1f;
     }

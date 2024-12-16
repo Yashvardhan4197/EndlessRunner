@@ -48,6 +48,7 @@ public class PlayerController
     {
         currentLane = Math.Clamp(currentLane + lane, -1, 1);
         targetXPos = currentLane * playerDataSO.LaneDistance;
+        //GameService.Instance.SoundService.PlaySFX(Sound.CHANGE_LANE);
     }
 
     public void PerformJump()
