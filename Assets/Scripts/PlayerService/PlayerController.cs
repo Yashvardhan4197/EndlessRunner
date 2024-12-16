@@ -38,7 +38,7 @@ public class PlayerController
         }
         else
         {
-            rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, playerDataSO.ForwardSpeed*2);
+            rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, playerDataSO.ForwardSpeed*1.4f);
         }
         Vector3 newPos = new Vector3(targetXPos, rb.position.y, rb.position.z);
         rb.MovePosition(Vector3.Lerp(rb.position, newPos, playerDataSO.HorizontalSpeed * Time.deltaTime));
@@ -52,7 +52,8 @@ public class PlayerController
 
     public void PerformJump()
     {
-        rb.velocity += playerDataSO.JumpSpeed * Vector3.up;
+        Vector3 currentVelocity=rb.velocity;
+        rb.velocity = new Vector3(currentVelocity.x,playerDataSO.JumpSpeed,currentVelocity.y);
     }
 
     public void OnPlayerDead()

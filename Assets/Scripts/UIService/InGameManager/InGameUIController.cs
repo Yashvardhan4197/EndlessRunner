@@ -7,6 +7,7 @@ public class InGameUIController
 {
     private InGameUIView inGameUIView;
     private int score;
+    private int highScore;
     private bool gamePaused;
     private bool gameLostStatus;
     private bool doubleScorePickUpCheck;
@@ -27,9 +28,46 @@ public class InGameUIController
 
     }
 
+    private void DeactivatePowerPickUp(PickupType pickupType)
+    {
+        if (pickupType == PickupType.DOUBLE_COIN)
+        {
+            doubleScorePickUpCheck = false;
+        }
+        else if (pickupType == PickupType.DOUBLE_SPEED)
+        {
+            GameService.Instance.PlayerService.GetPlayerController().SetDoubleSpeedCheck(false);
+        }
+    }
+
+    private void ActivatePowerPickup(PickupType pickupType)
+    {
+        if (pickupType == PickupType.DOUBLE_COIN)
+        {
+            doubleScorePickUpCheck = true;
+        }
+        else if (pickupType == PickupType.DOUBLE_SPEED)
+        {
+            GameService.Instance.PlayerService.GetPlayerController().SetDoubleSpeedCheck(true);
+        }
+    }
+
+    private void RemovePickUpBars()
+    {
+        foreach (var item in pickupBarsCollection)
+        {
+            UnityEngine.Object.Destroy(item.Value.gameObject);
+        }
+        foreach (var item in new List<PickupType>(pickupBarsTimeCollection.Keys))
+        {
+            pickupBarsTimeCollection[item] = 0f;
+        }
+    }
+
     public void OnGameStart()
     {
         score = 0;
+        highScore = +PlayerPrefs.GetInt("HighScore",0);
         inGameUIView.GetScoreText().text=score.ToString();
         inGameUIView.GetPauseMenuGB().SetActive(false);
         inGameUIView.gameObject.SetActive(true);
@@ -40,18 +78,6 @@ public class InGameUIController
         pickupBarsCollection.Clear();
         pickupBarsTimeCollection.Clear();
         doubleScorePickUpCheck = false;
-    }
-
-    private void RemovePickUpBars()
-    {
-        foreach(var item in pickupBarsCollection)
-        {
-            UnityEngine.Object.Destroy(item.Value.gameObject);
-        }
-        foreach(var item in new List<PickupType>(pickupBarsTimeCollection.Keys))
-        {
-            pickupBarsTimeCollection[item] = 0f;
-        }
     }
 
     public void IncrementScore()
@@ -65,6 +91,11 @@ public class InGameUIController
             score++;
         }
         inGameUIView.GetScoreText().text = score.ToString();
+        if(score> highScore)
+        {
+            highScore = score;
+            PlayerPrefs.SetInt("HighScore", highScore);
+        }
     }
 
     public void OpenPauseScreen()
@@ -123,6 +154,8 @@ public class InGameUIController
     {
         inGameUIView.GetLostMenuGB().SetActive(true);
         inGameUIView.GetPauseMenuGB() .SetActive(false);
+        inGameUIView.GetHighScoreText().text="HIGH SCORE: "+highScore.ToString();
+        inGameUIView.GetLostScreenYourScoreText().text = "Your Score: " + score.ToString();
         Time.timeScale = 0f;
         gameLostStatus = true;
     }
@@ -132,9 +165,10 @@ public class InGameUIController
         if (pickupBarsCollection.ContainsKey(pickupType)==false)
         {
             PickupUIView newPickUpBar = UnityEngine.Object.Instantiate(pickupUIPrefab);
+            newPickUpBar.gameObject.GetComponent<RectTransform>().SetParent(inGameUIView.GetPickupBarParent(),false);
+            newPickUpBar.gameObject.GetComponent<RectTransform>().sizeDelta = Vector2.one;
             newPickUpBar.SetMaxTime(pickupTime);
             newPickUpBar.GetPickUpImage().sprite = pickupImage;
-            newPickUpBar.gameObject.GetComponent<RectTransform>().SetParent(inGameUIView.GetPickupBarParent());
             pickupBarsCollection.Add(pickupType, newPickUpBar);
             ActivatePowerPickup(pickupType);
         }
@@ -172,31 +206,5 @@ public class InGameUIController
             }
         }
     }
-
-
-    private void DeactivatePowerPickUp(PickupType pickupType)
-    {
-        if(pickupType==PickupType.DOUBLE_COIN)
-        {
-            doubleScorePickUpCheck = false;
-        }
-        else if(pickupType==PickupType.DOUBLE_SPEED)
-        {
-            GameService.Instance.PlayerService.GetPlayerController().SetDoubleSpeedCheck(false);
-        }
-    }
-
-    private void ActivatePowerPickup(PickupType pickupType)
-    {
-        if (pickupType == PickupType.DOUBLE_COIN)
-        {
-            doubleScorePickUpCheck = true;
-        }
-        else if (pickupType == PickupType.DOUBLE_SPEED)
-        {
-            GameService.Instance.PlayerService.GetPlayerController().SetDoubleSpeedCheck(true);
-        }
-    }
-
 
 }
