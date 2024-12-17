@@ -27,11 +27,13 @@ public class GameService : MonoBehaviour
     [SerializeField] LobbyView lobbyView;
     [SerializeField] InGameUIView inGameUIView;
     [SerializeField] PickupUIView pickupUIPrefab;
+    [SerializeField] ChangeMaterialPopUpView changeMaterialPopUpPrefab;
     #endregion
 
     #region DATA
     [SerializeField] Transform startPosition;
     [SerializeField] PlayerDataSO playerDataSO;
+    [SerializeField] ChangeMaterialPopUpDataSO changeMaterialPopUpDataSO;
     [SerializeField] GroundObjectView groundPrefab;
     [SerializeField] PickupView pickupPrefab;
     [SerializeField] float groundOffsetZ;
@@ -67,7 +69,7 @@ public class GameService : MonoBehaviour
     {
         playerService = new PlayerService(playerView,playerDataSO);
         groundService=new GroundService(groundPrefab,pickupPrefab,groundOffsetZ,groundOffsetY,pickupCount,powerUpSpawningRate,pickupDataSO,groundParent,pickupParent);
-        uIService=new UIService(lobbyView,inGameUIView,pickupUIPrefab);
+        uIService=new UIService(lobbyView,inGameUIView,pickupUIPrefab,changeMaterialPopUpPrefab,changeMaterialPopUpDataSO);
         soundService=new SoundService(bgAudioSource,sFXAudioSource,SpecialAudioSource,soundTypes);
         UIService.GetLobbyController().OpenLobby();
         soundService.PlayBackGroundAudio(Sound.BACKGROUND_MUSIC);

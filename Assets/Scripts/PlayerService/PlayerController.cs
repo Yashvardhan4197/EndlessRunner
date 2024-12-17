@@ -24,6 +24,7 @@ public class PlayerController
     public void OnGameStart()
     {
         playerView.gameObject.transform.position = playerDataSO.StartPosition.position;
+        playerView.GetPlayerRenderer().material=playerDataSO.PlayerMaterial;
         currentLane = 0;
         targetXPos=playerView.transform.position.x;
         doubleSpeedCheck = false;
@@ -84,6 +85,11 @@ public class PlayerController
     public void SetPauseStatus(bool pause)
     {
         gamePaused=pause;
+    }
+
+    public void SetPlayerMaterial(Material material)
+    {
+        playerDataSO.SetPlayerMaterial(material);
     }
 
 }

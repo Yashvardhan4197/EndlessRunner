@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cdca6de1986b4f43bd1a3ffcf42a423, type: 3}
+  m_Name: ChangeMaterialPopUpCollectionData
+  m_EditorClassIdentifier: 
+  changeMaterialDataCollection:
+  - name: DEFAULT
+    image: {fileID: 21300000, guid: 3ce395b3418896d48b158402a45de05c, type: 3}
+    material: {fileID: 2100000, guid: b80b25c8f396f7a41bcb9d182502dbf3, type: 2}
+  - name: GOLDEN
+    image: {fileID: 21300000, guid: 57888383722878d49a32e8bd7ed6f7de, type: 3}
+    material: {fileID: 2100000, guid: c3f545871e6ad0b429875fb73852a671, type: 2}
+  - name: SILVER
+    image: {fileID: 21300000, guid: 4b79e3c0c59031d4a9b8366adbf703cd, type: 3}
+    material: {fileID: 2100000, guid: d114cde0600508c4f9eed72b935654e6, type: 2}
+  - name: CYBER
+    image: {fileID: 21300000, guid: ffeab217306a19445bb54e616e22dcd4, type: 3}
+    material: {fileID: 2100000, guid: 4284e0aad15d6b64d86768e51640a3aa, type: 2}

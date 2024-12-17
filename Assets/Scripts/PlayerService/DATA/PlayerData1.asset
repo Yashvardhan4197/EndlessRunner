@@ -17,3 +17,4 @@ MonoBehaviour:
   laneDistance: 2
   jumpSpeed: 6
   startPosition: {fileID: 9033844071778842946, guid: 3f936b1c9ffe085469f28fd006e0cbc4, type: 3}
+  playerMaterial: {fileID: 2100000, guid: b80b25c8f396f7a41bcb9d182502dbf3, type: 2}

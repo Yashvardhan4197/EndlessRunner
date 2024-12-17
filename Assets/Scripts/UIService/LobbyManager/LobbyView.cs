@@ -1,4 +1,5 @@
 
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,6 +8,10 @@ public class LobbyView : MonoBehaviour
     private LobbyController lobbyController;
     [SerializeField] Button startButton;
     [SerializeField] Button exitButton;
+    [SerializeField] Transform changeMaterialCardParent;
+    [SerializeField] Button changeMaterialPopUpOpenButton;
+    [SerializeField] Button changeMaterialPopUpCloseButton;
+    [SerializeField] Transform changeMaterialPopUp;
     public void SetController(LobbyController lobbyController)
     {
         this.lobbyController = lobbyController;
@@ -16,6 +21,20 @@ public class LobbyView : MonoBehaviour
     {
         startButton.onClick.AddListener(OnStartButtonClicked);
         exitButton.onClick.AddListener(OnExitButtonClicked);
+        changeMaterialPopUpCloseButton.onClick.AddListener(CloseChangeMaterialPopUp);
+        changeMaterialPopUpOpenButton.onClick.AddListener(OpenChangeMaterialPopUp);
+    }
+
+    private void CloseChangeMaterialPopUp()
+    {
+        Debug.Log("Closed");
+        lobbyController.ToggleChangeMaterialPopUp(false);
+    }
+
+    private void OpenChangeMaterialPopUp()
+    {
+        Debug.Log("Opened");
+        lobbyController.ToggleChangeMaterialPopUp(true);
     }
 
     public void OnStartButtonClicked()
@@ -27,5 +46,9 @@ public class LobbyView : MonoBehaviour
     {
         lobbyController.ExitGame();
     }
+
+    public Transform GetChangeMaterialCardParent() => changeMaterialCardParent;
+
+    public Transform GetChangeMaterialPopUp()=> changeMaterialPopUp;
 
 }

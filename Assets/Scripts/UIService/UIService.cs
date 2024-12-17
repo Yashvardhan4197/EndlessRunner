@@ -3,9 +3,9 @@
     private LobbyController lobbyController;
     private InGameUIController inGameUIController;
 
-    public UIService(LobbyView lobbyView, InGameUIView inGameUIView,PickupUIView pickupUIPrefab)
+    public UIService(LobbyView lobbyView, InGameUIView inGameUIView,PickupUIView pickupUIPrefab,ChangeMaterialPopUpView changeMaterialPopUpPrefab,ChangeMaterialPopUpDataSO changeMaterialPopUpDataSO)
     {
-        lobbyController = new LobbyController(lobbyView);
+        lobbyController = new LobbyController(lobbyView,changeMaterialPopUpPrefab,changeMaterialPopUpDataSO);
         inGameUIController = new InGameUIController(inGameUIView,pickupUIPrefab);
     }
 

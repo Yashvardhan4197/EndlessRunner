@@ -8,6 +8,7 @@ public class PlayerView : MonoBehaviour
     [SerializeField] Transform jumpRadiusPosition;
     [SerializeField] float jumpRadius;
     [SerializeField] LayerMask groundLayerMask;
+    [SerializeField] Renderer playerMeshRenderer;
     private void Start()
     {
         playerController?.OnGameStart();
@@ -69,4 +70,7 @@ public class PlayerView : MonoBehaviour
             playerController.OnPlayerDead();
         }
     }
+
+    public Renderer GetPlayerRenderer() => playerMeshRenderer;
+
 }
