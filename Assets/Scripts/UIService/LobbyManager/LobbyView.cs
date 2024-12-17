@@ -27,13 +27,11 @@ public class LobbyView : MonoBehaviour
 
     private void CloseChangeMaterialPopUp()
     {
-        Debug.Log("Closed");
         lobbyController.ToggleChangeMaterialPopUp(false);
     }
 
     private void OpenChangeMaterialPopUp()
     {
-        Debug.Log("Opened");
         lobbyController.ToggleChangeMaterialPopUp(true);
     }
 
