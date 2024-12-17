@@ -8,7 +8,7 @@ public class PlayerController
     private Rigidbody rb;
     private int currentLane;
     private float targetXPos;
-    private bool doubleSpeedCheck;
+    private bool halfSpeedCheck;
     private bool gamePaused;
     public bool GamePaused { get { return gamePaused; } }
     public PlayerController(PlayerView playerView,PlayerDataSO playerDataSO)
@@ -27,19 +27,19 @@ public class PlayerController
         playerView.GetPlayerRenderer().material=playerDataSO.PlayerMaterial;
         currentLane = 0;
         targetXPos=playerView.transform.position.x;
-        doubleSpeedCheck = false;
+        halfSpeedCheck = false;
         gamePaused = false;
     }
     
     public void Move()
     {
-        if (!doubleSpeedCheck)
+        if (!halfSpeedCheck)
         {
             rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, playerDataSO.ForwardSpeed);
         }
         else
         {
-            rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, playerDataSO.ForwardSpeed*1.4f);
+            rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, playerDataSO.ForwardSpeed*0.6f);
         }
         Vector3 newPos = new Vector3(targetXPos, rb.position.y, rb.position.z);
         rb.MovePosition(Vector3.Lerp(rb.position, newPos, playerDataSO.HorizontalSpeed * Time.deltaTime));
@@ -68,7 +68,7 @@ public class PlayerController
         GameService.Instance.GroundService.SpawnGroundObject();
     }
 
-    public void SetDoubleSpeedCheck(bool check) => doubleSpeedCheck = check;
+    public void SetDoubleSpeedCheck(bool check) => halfSpeedCheck = check;
 
     public void SetPauseStatus()
     {

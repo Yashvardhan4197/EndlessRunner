@@ -100,14 +100,14 @@ public class PickupController
         {
             GameService.Instance.UIService.GetInGameUIController().IncrementScore();
         }
-        else if (pickupView.GetPickupCollection()[currentlyActiveIndex].pickupType==PickupType.DOUBLE_SPEED)
+        else if (pickupView.GetPickupCollection()[currentlyActiveIndex].pickupType==PickupType.HALF_SPEED)
         {
             int maxTime=0;
             Sprite pickupImage=null;
             string pickUpName = "";
             for(int i=0;i<pickupDataSO.PickupDataElementCollections.Length;i++)
             {
-                if (pickupDataSO.PickupDataElementCollections[i].PickupType==PickupType.DOUBLE_SPEED)
+                if (pickupDataSO.PickupDataElementCollections[i].PickupType==PickupType.HALF_SPEED)
                 {
                     maxTime = pickupDataSO.PickupDataElementCollections[i].MaxTime;
                     pickupImage = pickupDataSO.PickupDataElementCollections[i].PickupImage;
@@ -115,8 +115,8 @@ public class PickupController
                     break;
                 }
             }
-            GameService.Instance.UIService.GetInGameUIController().OnPickupPowerActivated(PickupType.DOUBLE_SPEED, maxTime, pickupImage,pickUpName);
-            GameService.Instance.SoundService.PlaySpecialSound(Sound.DOUBLE_SPEED);
+            GameService.Instance.UIService.GetInGameUIController().OnPickupPowerActivated(PickupType.HALF_SPEED, maxTime, pickupImage,pickUpName);
+            GameService.Instance.SoundService.PlaySpecialSound(Sound.HALF_SPEED);
         }
         else if(pickupView.GetPickupCollection()[currentlyActiveIndex].pickupType == PickupType.DOUBLE_COIN)
         {
