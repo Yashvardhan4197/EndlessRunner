@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickupDataElementCollections:
   - PickupType: 1
-    PickupName: DOUBLE SPEED
-    PickupImage: {fileID: 21300000, guid: c51afa706b02a044694b30f33f81d239, type: 3}
+    PickupName: HALF_SPEED
+    PickupImage: {fileID: 21300000, guid: 2c04f4986ebc72e48a8b0c3eb2e42db2, type: 3}
     MaxTime: 5
   - PickupType: 2
     PickupName: DOUBLE COIN
-    PickupImage: {fileID: 21300000, guid: 108ca3e7dda90d945b0914bf9259ec94, type: 3}
+    PickupImage: {fileID: 21300000, guid: 479beb462fc81244681fa2bd846cb35a, type: 3}
     MaxTime: 10

@@ -1,6 +1,6 @@
 ﻿public enum PickupType
 {
     COIN,
-    DOUBLE_SPEED,
+    HALF_SPEED,
     DOUBLE_COIN
 }

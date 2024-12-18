@@ -34,7 +34,7 @@ public class InGameUIController
         {
             doubleScorePickUpCheck = false;
         }
-        else if (pickupType == PickupType.DOUBLE_SPEED)
+        else if (pickupType == PickupType.HALF_SPEED)
         {
             GameService.Instance.PlayerService.GetPlayerController().SetDoubleSpeedCheck(false);
         }
@@ -46,7 +46,7 @@ public class InGameUIController
         {
             doubleScorePickUpCheck = true;
         }
-        else if (pickupType == PickupType.DOUBLE_SPEED)
+        else if (pickupType == PickupType.HALF_SPEED)
         {
             GameService.Instance.PlayerService.GetPlayerController().SetDoubleSpeedCheck(true);
         }

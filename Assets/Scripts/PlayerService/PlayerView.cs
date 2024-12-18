@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerView : MonoBehaviour
@@ -9,9 +10,15 @@ public class PlayerView : MonoBehaviour
     [SerializeField] float jumpRadius;
     [SerializeField] LayerMask groundLayerMask;
     [SerializeField] Renderer playerMeshRenderer;
+    [SerializeField] float swipeThreshold;
+    private Vector2 startTouchPosition;
+    private Vector2 endTouchPosition;
+
     private void Start()
     {
         playerController?.OnGameStart();
+        startTouchPosition=new Vector2 (0,0);
+        endTouchPosition=new Vector2 (0,0);
     }
 
     private void FixedUpdate()
@@ -27,22 +34,72 @@ public class PlayerView : MonoBehaviour
     {
         if (playerController.GamePaused==false)
         {
-            if (Input.GetKeyDown(KeyCode.A))
+            HandleTouchInput();
+
+            HandleKeyBoardInput();
+        }
+
+    }
+
+    private void HandleKeyBoardInput()
+    {
+        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            playerController.MoveLane(-1);
+        }
+        else if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            playerController.MoveLane(+1);
+        }
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            CheckForJump();
+        }
+    }
+
+    private void CheckForJump()
+    {
+        bool isGround = Physics.CheckSphere(jumpRadiusPosition.position, jumpRadius, groundLayerMask);
+        if (isGround)
+        {
+            playerController.PerformJump();
+        }
+    }
+
+    private void HandleTouchInput()
+    {
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+        {
+            startTouchPosition = Input.GetTouch(0).position;
+        }
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
+        {
+            endTouchPosition = Input.GetTouch(0).position;
+            Vector2 swipeDelta = endTouchPosition - startTouchPosition;
+
+            if(swipeDelta.magnitude > swipeThreshold)
             {
-                playerController.MoveLane(-1);
-            }
-            else if (Input.GetKeyDown(KeyCode.D))
-            {
-                playerController.MoveLane(+1);
-            }
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                bool isGround = Physics.CheckSphere(jumpRadiusPosition.position, jumpRadius, groundLayerMask);
-                if (isGround)
+                if(Mathf.Abs(swipeDelta.x)>Mathf.Abs(swipeDelta.y))
                 {
-                    playerController.PerformJump();
+                    if(swipeDelta.x>0)
+                    {
+                        playerController.MoveLane(+1);
+                    }
+                    else
+                    {
+                        playerController.MoveLane(-1);
+                    }
+                }
+                else
+                {
+                    if(swipeDelta.y>0)
+                    {
+                        CheckForJump();
+                    }
                 }
             }
+
+
         }
 
     }

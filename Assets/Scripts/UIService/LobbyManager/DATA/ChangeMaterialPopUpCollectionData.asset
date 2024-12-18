@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ChangeMaterialPopUpCollectionData
   m_EditorClassIdentifier: 
   changeMaterialDataCollection:
-  - name: DEFAULT
+  - name: ROCK
     image: {fileID: 21300000, guid: 3ce395b3418896d48b158402a45de05c, type: 3}
     material: {fileID: 2100000, guid: b80b25c8f396f7a41bcb9d182502dbf3, type: 2}
   - name: GOLDEN

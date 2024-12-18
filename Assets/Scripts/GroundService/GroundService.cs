@@ -35,7 +35,6 @@ public class GroundService
         tempController.ActivateView();
         tempController.SetGroundObjectPosition(new Vector3(0,spawnOffsetY,lastSpawnedGroundObjectOffsetZ));
         tempController.SpawnObstacle();
-        //SpawnPickup
         List<Vector3>currentlySpawnedPickups = new List<Vector3>();
         SpawnPickup(tempController.GetPickupBounds(),currentlySpawnedPickups);
     }
