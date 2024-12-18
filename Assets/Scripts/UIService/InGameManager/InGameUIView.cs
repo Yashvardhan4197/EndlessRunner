@@ -18,6 +18,7 @@ public class InGameUIView : MonoBehaviour
     [SerializeField] TextMeshProUGUI HighScoreText;
     [SerializeField] TextMeshProUGUI LostScreenYourScoreText;
 
+    [SerializeField] Button togglePauseMenuButton; 
     [SerializeField] RectTransform pickupBarsParent;
     public void SetController(InGameUIController inGameUIController)
     {
@@ -31,6 +32,13 @@ public class InGameUIView : MonoBehaviour
 
         RestartFromLostMenuButton.onClick.AddListener(RestartGame);
         ExitToLobbyScreenButtonLostMenu.onClick.AddListener(OnExitToLobbyScreenButtonClicked);
+        togglePauseMenuButton.onClick.AddListener(onTogglePauseMenuButtonClicked);
+
+    }
+
+    private void onTogglePauseMenuButtonClicked()
+    {
+        inGameUIController.TogglePauseMenu();
     }
 
     private void RestartGame()

@@ -153,6 +153,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   playerMeshRenderer: {fileID: 3174032283966276614}
+  swipeThreshold: 40
 --- !u!1 &4631331583410470094
 GameObject:
   m_ObjectHideFlags: 0
