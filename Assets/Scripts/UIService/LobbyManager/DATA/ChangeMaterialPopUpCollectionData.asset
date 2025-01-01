@@ -25,3 +25,6 @@ MonoBehaviour:
   - name: CYBER
     image: {fileID: 21300000, guid: ffeab217306a19445bb54e616e22dcd4, type: 3}
     material: {fileID: 2100000, guid: 4284e0aad15d6b64d86768e51640a3aa, type: 2}
+  - name: BROWN
+    image: {fileID: 21300000, guid: 8a5f9829a049c704fa992203bfc451f2, type: 3}
+    material: {fileID: 2100000, guid: 89b53b6902b0ec14baa1599e1c68d643, type: 2}
