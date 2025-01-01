@@ -5,8 +5,16 @@ using System.Collections.Generic;
 public class GenericPool<T> where T : class
 {
     private List<PooledItem<T>> pooledItems=new List<PooledItem<T>>();
+    public List<PooledItem<T>> PooledItems { get { return pooledItems; } }
 
-
+    private T CreatePooledItem()
+    {
+        PooledItem<T> newItem = new PooledItem<T>();
+        newItem.isUsed = true;
+        newItem.controller = CreateItem();
+        pooledItems.Add(newItem);
+        return newItem.controller;
+    }
 
     public T GetItem()
     {
@@ -26,16 +34,6 @@ public class GenericPool<T> where T : class
         {
             item.isUsed= false;
         }
-    }
-
-
-    private T CreatePooledItem()
-    {
-        PooledItem<T> newItem= new PooledItem<T>();
-        newItem.isUsed = true;
-        newItem.controller = CreateItem();
-        pooledItems.Add(newItem);
-        return newItem.controller;
     }
 
     public virtual T CreateItem()

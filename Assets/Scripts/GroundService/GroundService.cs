@@ -30,7 +30,7 @@ public class GroundService
 
     public void SpawnGroundObject()
     {
-        GroundObjectController tempController= groundObjectPool.GetPooledItem();
+        GroundObjectController tempController= groundObjectPool.GetItem();
         lastSpawnedGroundObjectOffsetZ += offsetZ;
         tempController.ActivateView();
         tempController.SetGroundObjectPosition(new Vector3(0,spawnOffsetY,lastSpawnedGroundObjectOffsetZ));
@@ -44,7 +44,7 @@ public class GroundService
         int temp = pickupCount;
         while(temp>0)
         {
-            PickupController pickupController = pickupPool.GetPooledItem();
+            PickupController pickupController = pickupPool.GetItem();
             pickupController.SetPickUpTransform(boxCollider,lastSpawnedGroundObjectOffsetZ,currentlySpawnedPickups);
             pickupController.EnableCoinPickup();
             temp--;
@@ -58,7 +58,7 @@ public class GroundService
         int rand = Random.Range(0, 100);
         if(rand<=powerUpSpawningRate)
         {
-            PickupController pickupController = pickupPool.GetPooledItem();
+            PickupController pickupController = pickupPool.GetItem();
             pickupController.SetPickUpTransform(boxCollider, lastSpawnedGroundObjectOffsetZ, currentlySpawnedPickups);
             pickupController.EnablePowerPickup();
         }
